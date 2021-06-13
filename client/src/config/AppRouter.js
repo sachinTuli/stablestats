@@ -16,11 +16,9 @@ export default function AppRouter() {
     return (
         <div>
             <Router>
-                <Route path='/signup' exact  component={Signup}  />
-                <Route path='/' exact ><Login setToken={setToken}/></Route>
-                {/* {!token?<Route path='/' exact ><Login setToken={setToken}/></Route>:<Redirect to={"/dashboard"}/>} */}
-                {/* {token?<Route path='/dashboard'  component={Dashboard} />:<Redirect to={"/"}/>} */}
-                <Route path='/dashboard'  component={Dashboard} />
+                {!token?<Route path='/' exact ><Login setToken={setToken}/></Route>:<Redirect to={"/dashboard"}/>}
+                {token?<Route path='/dashboard'  component={Dashboard} />:<Redirect to={"/"}/>}
+                <Route path='/signup'  component={Signup}  />
                
             </Router>
         </div>

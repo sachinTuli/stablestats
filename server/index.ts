@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const app = express();
 const path = require('path');
-const APP_PORT = process.env.PORT || 3000;
+const APP_PORT = process.env.APP_PORT || 3000;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 
 app.use(session({
