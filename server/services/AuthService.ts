@@ -27,7 +27,7 @@ class AuthService {
                     name:name,
                     email: email,
                     password: hasPassword,
-                    phoneNumber: phoneNumber
+                    phoneNumber: phoneNumber,
                 })
                 await newUser.save();
                 return {
@@ -63,13 +63,19 @@ class AuthService {
                         message: "Incorrect password."
                     }
                 } else {
+
                     const token = jwt.encode({
                             name: user.name,
                             email: user.email,
                             phoneNumber: user.phoneNumber
                     }, process.env.JWT_SECRET as string);
                     user.token.push({token: token});
-                    return user; 
+                    
+                     return {
+                        success: true,
+                        message: "Login Successfull.",
+                        data:user
+                    }
                 }
             }
         } catch(err) {

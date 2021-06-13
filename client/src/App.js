@@ -7,7 +7,6 @@ function App() {
       <div className="pages">
         <div data-page="about" className="page">
           <div className="page-content">
-            
               <AppRouter />
           </div>
         </div>

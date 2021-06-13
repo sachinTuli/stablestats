@@ -1,32 +1,40 @@
 
 import { useHistory } from 'react-router-dom';
 import React, { useState } from "react";
-
+import LoginService from '../services/LoginService'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router';
 async function loginUser(credentials){
-  return fetch('http://localhost:8080/login',{
-    method:'POST',
-    headers:{
-      'Content-Type':'application/json'
-    },
-    body:JSON.stringify(credentials)
-  })
-  .then(data=>data.json())
+  return LoginService.login(credentials).then((result) => {
+      return result.data;
+  }).catch((err) => {
+      alert("Something went wrong");
+  });
 }
 
-function Rightsidelogin(){
-  const [email, setEmail] = useState("");
+function Rightsidelogin(props){
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("")
 
   function validateForm(){
-    return email.length>0 && password.length>0;
+    return username.length>0 && password.length>0;
   }
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
-      email,
+    const response = await loginUser({
+      username,
       password
     });
+    if(response && !response['success']){
+      alert(response['message'])
+    }
+    if(response && response['success']){
+      // alert(response['message'])
+      // //Route to dashbaord and save token here
+      props.setToken(response.data)
+      window.location='/dashboard';
+    }
   }
 
  
@@ -38,7 +46,7 @@ function Rightsidelogin(){
         <p className="cgreen fs20 fw3 fw3">New Here? Create Account</p>
         <form onSubmit={handleSubmit}   className="mt40" align="left">
           <label className="w100 fw3 inline fs16 cnavy">Email</label>
-          <input value={email} onChange={(e)=>setEmail(e.target.value)} type="Email" name="email" className="w100 logInp" />
+          <input value={username} onChange={(e)=>setUsername(e.target.value)} type="Email" name="username" className="w100 logInp" />
           <div className="flex ai jcb">
             <label className=" fw3 inline fs16 cnavy">Password</label><a href="JavaScript:" className="cgreen fw3 inline">Forgot password?</a>
           </div>
@@ -50,12 +58,16 @@ function Rightsidelogin(){
       </div>
     </div> 
 
-
-
-
-
     )}
     
-    
-    
+    Rightsidelogin.propTypes = {
+      setToken: PropTypes.func.isRequired
+
+    }    
     export default Rightsidelogin
+
+
+
+
+    
+    
