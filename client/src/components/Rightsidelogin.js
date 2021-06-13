@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import React, { useState } from "react";
 
 async function loginUser(credentials){
-  return fetch('http://localhost:8080/login',{
+  return fetch('http://localhost:3001/login',{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
@@ -11,6 +11,17 @@ async function loginUser(credentials){
     body:JSON.stringify(credentials)
   })
   .then(data=>data.json())
+}
+
+async function discordLogin() {
+  return fetch("http://localhost:3001/auth/discord", {
+    method: 'GET',
+    headers: {
+      'Content-Type':'application/json'
+    }
+  }).then(data=>{
+    console.log(data.json())
+  })
 }
 
 function Rightsidelogin(){
@@ -45,7 +56,7 @@ function Rightsidelogin(){
           <input value = {password} onChange={(e)=>setPassword(e.target.value)} type="password" name="password" className="w100 logInp" />
           <button name="logBtn" disabled={!validateForm()} className="btnFull logBtn trans br8 fs16 cwhite fw3">Sign in</button>
           &nbsp;&nbsp;
-          <button type="submit"  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
+          <button onClick={discordLogin()}  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
         </form>
       </div>
     </div> 
