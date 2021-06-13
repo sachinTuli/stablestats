@@ -38,17 +38,11 @@ mongoose.connect(MONGO_URL, {
 });
 
 app.use(router);
-app.use(express.static('client/build'))
+
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    return res.json("Hello baby");    
 })
-if(process.env.NODE_ENV === 'production') {
-  // set static folder
-  app.use(express.static('client/build'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
+
 
 
 app.listen(APP_PORT, () => {
