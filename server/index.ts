@@ -6,10 +6,11 @@ import session from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
 import router from './routes';
+import path from 'path';
+
 require('dotenv').config();
 
 const app = express();
-const path = require('path');
 const APP_PORT = process.env.PORT || 3000;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 
@@ -38,11 +39,18 @@ mongoose.connect(MONGO_URL, {
 });
 
 app.use(router);
-
+app.use(express.static('client/build'))
 app.get('/', (req, res) => {
-    return res.json("Hello baby");    
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))
 })
 
+if(process.env.NODE_ENV === 'production') {
+  // set static folder
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 
 app.listen(APP_PORT, () => {
