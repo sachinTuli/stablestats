@@ -10,12 +10,13 @@ authRouter.post("/login", AuthController.login);
 
 authRouter.get('/discord', passport.authenticate('discord'));
 authRouter.get('/discord/callback', passport.authenticate('discord', {
-    failureRedirect: '/'
+    failureRedirect: '/',session: false 
 }), function(req, res) {
-    res.redirect("/token")
+    console.log("inside callback")
+    return res.redirect("/token")
 });
 
-authRouter.get("/token", passport.authenticate("jwt", { session: false }), authMiddleware.auth , (req,res)=>{
+authRouter.get("/token", passport.authenticate("jwt", { session: false }),  (req,res)=>{
     console.log("accessable function", req.user);
     return res.json("hope so worked");
 })

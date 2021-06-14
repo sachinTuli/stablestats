@@ -86,7 +86,11 @@ function Rightsidelogin(props) {
             Sign in
           </button>
           &nbsp;&nbsp;
-          <button type="button" onClick = {discordLogin} name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
+          <a href="http://localhost:3000/auth/discord">
+              <button type="button"  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
+
+</a>
+          {/* <button type="button" onClick = {discordLogin} name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button> */}
         </form>
       </div>
     </div>
