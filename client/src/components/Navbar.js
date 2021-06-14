@@ -6,24 +6,15 @@ import settingicon from  '../img/settingIcon.png'
 import signouticon from '../img/signOutIcon.png'
 
  
-    
-    
-   
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
 
 function Navbar(){
+    function signout(){
+      sessionStorage.removeItem("token");        
 
+    }
+    
+    
     return(
 
 
@@ -167,7 +158,7 @@ function Navbar(){
             <img src={subscription} />
             Subscriptions
           </a>
-          <a href="javascript" className="myAccDropLink us pointer">
+          <a href="/"  onClick={signout} className="myAccDropLink us pointer">
             <img src={signouticon} />
             Sign out
           </a>

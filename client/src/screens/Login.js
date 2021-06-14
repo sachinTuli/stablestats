@@ -1,15 +1,26 @@
 
- import Leftside from '../components/leftside.js'
+import React from 'react'
+import PropTypes from 'prop-types'
+import Leftside from '../components/leftside.js'
 import Rightsidelogin from '../components/Rightsidelogin.js'
-function Login(){
 
-    return(
-<section className="logPageCont">
+
+function Login(props) {
+  return (
+    <section className="logPageCont">
 <div className="logFlex flex">
   <Leftside/>
-  <Rightsidelogin/>
+  <Rightsidelogin setToken={props.setToken} />
  
  
 </div> {/* logFlex */}
-</section>)}
+</section>
+  )
+}
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+}
+
 export default Login
+
