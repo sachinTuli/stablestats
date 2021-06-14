@@ -68,11 +68,7 @@ function Rightsidelogin(){
           <input value = {password} onChange={(e)=>setPassword(e.target.value)} type="password" name="password" className="w100 logInp" />
           <button name="logBtn" disabled={!validateForm()} className="btnFull logBtn trans br8 fs16 cwhite fw3">Sign in</button>
           &nbsp;&nbsp;
-<<<<<<< HEAD
-          {/* <button type="submit"  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button> */}
-=======
           <button onClick={discordLogin()}  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
->>>>>>> 3a0f008f022038ec4964500ad03318395043f143
         </form>
       </div>
     </div> 

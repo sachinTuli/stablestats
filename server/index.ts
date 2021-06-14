@@ -11,7 +11,6 @@ import path from 'path';
 require('dotenv').config();
 
 const app = express();
-
 const APP_PORT = process.env.APP_PORT || 3000;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 
@@ -40,16 +39,20 @@ mongoose.connect(MONGO_URL, {
     console.log("connected");
 });
 
-// app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
-// });
-
-app.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
-});
-
 app.use(router);
+app.use(express.static('client/build'))
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))
+})
+
+if(process.env.NODE_ENV === 'production') {
+  // set static folder
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 
 app.listen(APP_PORT, () => {
     console.log('Hello baby welcome to my world!');
