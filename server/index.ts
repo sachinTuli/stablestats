@@ -6,6 +6,8 @@ import session from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
 import router from './routes';
+import path from 'path';
+
 require('dotenv').config();
 
 const app = express();
@@ -27,6 +29,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 require('./config/passport')(passport);
+require('./config/discord')(passport);
 
 mongoose.connect(MONGO_URL, {
     useCreateIndex: true,
@@ -35,6 +38,15 @@ mongoose.connect(MONGO_URL, {
 },(err)=>{
     if(err) throw err;
     console.log("connected");
+});
+
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+// });
+
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
 });
 
 app.use(router);

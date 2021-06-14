@@ -6,15 +6,29 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router';
 
 async function loginUser(credentials){
-  return LoginService.login(credentials).then((result) => {
-      return result.data;
-  }).catch((err) => {
-      alert("Something went wrong");
-  });
+  return fetch('http://localhost:3001/login',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify(credentials)
+  })
+  .then(data=>data.json())
 }
 
-function Rightsidelogin(props){
-  const [username, setUsername] = useState("");
+async function discordLogin() {
+  return fetch("http://localhost:3001/auth/discord", {
+    method: 'GET',
+    headers: {
+      'Content-Type':'application/json'
+    }
+  }).then(data=>{
+    console.log(data.json())
+  })
+}
+
+function Rightsidelogin(){
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
 
   function validateForm(){
@@ -54,7 +68,11 @@ function Rightsidelogin(props){
           <input value = {password} onChange={(e)=>setPassword(e.target.value)} type="password" name="password" className="w100 logInp" />
           <button name="logBtn" disabled={!validateForm()} className="btnFull logBtn trans br8 fs16 cwhite fw3">Sign in</button>
           &nbsp;&nbsp;
+<<<<<<< HEAD
           {/* <button type="submit"  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button> */}
+=======
+          <button onClick={discordLogin()}  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
+>>>>>>> 3a0f008f022038ec4964500ad03318395043f143
         </form>
       </div>
     </div> 
