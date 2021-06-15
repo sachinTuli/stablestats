@@ -30,7 +30,7 @@ function Rightsidelogin(props) {
 
   function validateForm() {
     return username.length > 0 && password.length > 0;
-  }
+  }  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
