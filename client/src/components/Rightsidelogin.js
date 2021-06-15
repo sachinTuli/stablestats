@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import LoginService from "../services/LoginService";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-
 async function loginUser(credentials) {
   return LoginService.login(credentials)
     .then((result) => {
