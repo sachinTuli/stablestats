@@ -3,7 +3,9 @@ import * as jwt from "jwt-simple";
 import bcrypt from 'bcryptjs';
 
 class UserService {
-    async registerNewDiscordUser(accessToken:string, refreshToken:string, userProfile:any) {
+    
+    
+    public async registerNewDiscordUser(accessToken:string, refreshToken:string, userProfile:any) : Promise<any>  {
         console.log(accessToken, refreshToken ,userProfile);
         //NEED TO UPDATE THIS PASSWORD AND PHONE NUMBER
         var hasPassword = await bcrypt.hash(userProfile.id, 12);
@@ -22,10 +24,10 @@ class UserService {
                             phoneNumber: newUser.phoneNumber
                     }, process.env.JWT_SECRET as string);
                     
-                newUser.token.push({token: token});
-                await newUser.save();
-        console.log("user saved successfully")
-        return userProfile;
+            await    newUser.token.push({token: token});
+            const savedUser =    await newUser.save();
+        console.log("user saved successfully"+savedUser)
+        return savedUser;
     }
 }
 

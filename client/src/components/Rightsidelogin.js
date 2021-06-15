@@ -86,7 +86,7 @@ function Rightsidelogin(props) {
             Sign in
           </button>
           &nbsp;&nbsp;
-          <a href="http://localhost:3000/auth/discord">
+          <a href="https://glacial-thicket-65471.herokuapp.com/auth/discord">
               <button type="button"  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
 
 </a>
