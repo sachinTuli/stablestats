@@ -11,7 +11,8 @@ import path from 'path';
 require('dotenv').config();
 
 const app = express();
-const APP_PORT = process.env.PORT || 3000;
+const path = require('path');
+const APP_PORT = process.env.APP_PORT || 3000;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 
 app.use(session({
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 require('./config/passport')(passport);
+require('./config/discord')(passport);
 
 mongoose.connect(MONGO_URL, {
     useCreateIndex: true,
@@ -52,6 +54,10 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
 
 app.listen(APP_PORT, () => {
     console.log('Hello baby welcome to my world!');
