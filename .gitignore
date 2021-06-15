@@ -6,6 +6,7 @@
 /tmp
 /uploads
 /report
+.eslintcache
 
 # dependencies
 /node_modules
