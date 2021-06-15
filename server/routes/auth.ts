@@ -12,7 +12,8 @@ authRouter.get('/discord', passport.authenticate('discord'));
 authRouter.get('/discord/callback', passport.authenticate('discord', {
     failureRedirect: '/'
 }), function(req, res) {
-    res.redirect("/token")
+    console.log("working")
+    res.redirect("/dashboard")
 });
 
 authRouter.get("/token", passport.authenticate("jwt", { session: false }), authMiddleware.auth , (req,res)=>{
