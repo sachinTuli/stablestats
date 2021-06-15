@@ -58,7 +58,7 @@ app.all('/*', function(req, res, next) {
     next();
 });
 
-app.listen(APP_PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log('Hello baby welcome to my world!');
-    console.log("app port",process.env.APP_PORT);
+    console.log("app port",process.env.PORT);
 })
