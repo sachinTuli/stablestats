@@ -9,6 +9,7 @@ authRouter.post("/register", AuthController.register);
 authRouter.post("/login", AuthController.login);
 
 authRouter.get('/discord', passport.authenticate('discord'));
+
 authRouter.get('/discord/callback', passport.authenticate('discord', {
     failureRedirect: '/'
 }), function(req, res) {
@@ -16,7 +17,13 @@ authRouter.get('/discord/callback', passport.authenticate('discord', {
     res.redirect("/dashboard")
 });
 
-authRouter.get("/token", passport.authenticate("jwt", { session: false }), authMiddleware.auth , (req,res)=>{
+
+authRouter.get('/discord/callback', passport.authenticate('discord', { 
+    failureRedirect: '/',
+    successRedirect: '/dashboard'
+}));
+
+authRouter.get("/token", passport.authenticate("jwt", { session: false }),  (req,res)=>{
     console.log("accessable function", req.user);
     return res.json("hope so worked");
 })

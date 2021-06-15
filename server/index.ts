@@ -54,6 +54,10 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
 
 app.listen(APP_PORT, () => {
     console.log('Hello baby welcome to my world!');

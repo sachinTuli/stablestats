@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import LoginService from "../services/LoginService";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-
 async function loginUser(credentials) {
   return LoginService.login(credentials)
     .then((result) => {
@@ -30,7 +29,7 @@ function Rightsidelogin(props) {
 
   function validateForm() {
     return username.length > 0 && password.length > 0;
-  }
+  }  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,7 +85,11 @@ function Rightsidelogin(props) {
             Sign in
           </button>
           &nbsp;&nbsp;
-          <button type="button" onClick = {discordLogin} name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
+          <a href="https://glacial-thicket-65471.herokuapp.com/auth/discord">
+              <button type="button"  name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button>
+
+</a>
+          {/* <button type="button" onClick = {discordLogin} name="discordBtn" className="trans btnFull logBtn discordBtn br8 fs16 fw3">Sign in with Discord</button> */}
         </form>
       </div>
     </div>
