@@ -2,6 +2,7 @@
 export const HTTP_STATUS = {
     SERVER_ERROR: 500,
     NOT_FOUND: 404,
+    NOT_AUTHORIZED: 401,
     SUCCESS: 201
 }
 
