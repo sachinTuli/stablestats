@@ -6,7 +6,7 @@ const Race = new Schema({
         require:true,
     },
     distance: {
-        type: String,
+        type: Number,
         require: true
     },
     startTime: {
@@ -31,17 +31,41 @@ const Race = new Schema({
       require:true
     },
     winPercentageByDistance: {
-      type:String
+      "1000m" : { type: String, default: '??'},
+      "1200m": { type: String, default: '??' },
+      "1400m": { type: String, default: '??' },
+      "1600m": { type: String, default: '??' },
+      "1800m": { type: String, default: '??' },
+      "2000m": { type: String, default: '??' },
+      "2200m": { type: String, default: '??' },
+      "2400m": { type: String, default: '??' },
+      "2600m": { type: String, default: '??' },
     },
     totalPlacePercentage: {
       type: String,
       require:true
     },
     placePercentageByDistance: {
-      type:String
+      "1000m" : { type: String, default: '??'},
+      "1200m": { type: String, default: '??' },
+      "1400m": { type: String, default: '??' },
+      "1600m": { type: String, default: '??' },
+      "1800m": { type: String, default: '??' },
+      "2000m": { type: String, default: '??' },
+      "2200m": { type: String, default: '??' },
+      "2400m": { type: String, default: '??' },
+      "2600m": { type: String, default: '??' },
     },
     oddsByDisatnce: {
-      type:String
+      "1000m" : { type: String, default: '??'},
+      "1200m": { type: String, default: '??' },
+      "1400m": { type: String, default: '??' },
+      "1600m": { type: String, default: '??' },
+      "1800m": { type: String, default: '??' },
+      "2000m": { type: String, default: '??' },
+      "2200m": { type: String, default: '??' },
+      "2400m": { type: String, default: '??' },
+      "2600m": { type: String, default: '??' },
     }
   }],
   openGates: {
