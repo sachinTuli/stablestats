@@ -8,7 +8,7 @@
 /report
 .eslintcache
 /client/package-lock.json
-package-lock.json
+.package-lock.json
 # dependencies
 /node_modules
 
@@ -37,3 +37,6 @@ package-lock.json
 .DS_Store
 Thumbs.db
 .env
+package-lock.json
+client/package-lock.json
+package-lock.json
