@@ -17,6 +17,9 @@ const User = new Schema({
         type:Number,
         require:true
     },
+    discordId : {
+        type:String
+    },
     token: [{
         token: {
             type:String
