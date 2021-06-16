@@ -16,8 +16,13 @@ const MONGO_URL = process.env.MONGOOSE_URL as string;
 
 app.use(session({
     secret: "sessionSecret",
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false,
+    name: "s_id",
+    cookie:{
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        secure: false
+    }
 }));
 
 app.use(cors());

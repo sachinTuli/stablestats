@@ -2,6 +2,19 @@
 
  import horsesample from '../img/horse_sample.png'
  import item_sample from '../img/item_sample.png'
+ import LoginService from "../services/LoginService";
+
+ async function check() {
+  return LoginService.getCurruntUser()
+    .then((result) => {
+      console.log(result);
+      return result.data;
+    })
+    .catch((err) => {
+      alert("Something went wrong");
+    });
+}
+
 function Maincontainer (){
 
     return(
@@ -13,7 +26,7 @@ function Maincontainer (){
             <div className="blockBox">
               <h2 className="widgetHead1">Class</h2>
               <div className="classCont">
-                <div className="classOuter"><span className="classBox">Class I</span></div>
+                <div className="classOuter"><span className="classBox" onClick={check}>Class I</span></div>
                 <div className="classOuter"><span className="classBox">Class II</span></div>
                 <div className="classOuter"><span className="classBox">Class III</span></div>
                 <div className="classOuter"><span className="classBox">Class IIV</span></div>

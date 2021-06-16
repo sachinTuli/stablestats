@@ -1,7 +1,6 @@
 import { HTTP_STATUS } from './../constants/ErrorStatus';
 import express from 'express';
 import { Message } from '../constants/Message';
-import { ApiResponse } from '../interface/Response';
 import authService from '../services/AuthService';
 import { BaseController } from './BaseController';
 
