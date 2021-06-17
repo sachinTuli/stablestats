@@ -6,11 +6,14 @@ import session from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
 import router from './routes';
+
+
 require('dotenv').config();
 
 const app = express();
+
 const path = require('path');
-const APP_PORT = process.env.APP_PORT || 3000;
+const APP_PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 
 app.use(session({
@@ -27,6 +30,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 require('./config/passport')(passport);
+require('./config/discord')(passport);
 
 mongoose.connect(MONGO_URL, {
     useCreateIndex: true,
@@ -39,9 +43,10 @@ mongoose.connect(MONGO_URL, {
 
 app.use(router);
 app.use(express.static('client/build'))
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))
 })
+
 if(process.env.NODE_ENV === 'production') {
   // set static folder
   app.use(express.static('client/build'));
@@ -50,8 +55,12 @@ if(process.env.NODE_ENV === 'production') {
   });
 }
 
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
 
-app.listen(APP_PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log('Hello baby welcome to my world!');
-    console.log("app port",process.env.APP_PORT);
+    console.log("app port",process.env.PORT);
 })
