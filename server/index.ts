@@ -6,11 +6,13 @@ import session from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
 import router from './routes';
-import path from 'path';
+
 
 require('dotenv').config();
 
 const app = express();
+
+const path = require('path');
 const APP_PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 
@@ -58,7 +60,7 @@ app.all('/*', function(req, res, next) {
     next();
 });
 
-app.listen(APP_PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log('Hello baby welcome to my world!');
-    console.log("app port",process.env.APP_PORT);
+    console.log("app port",process.env.PORT);
 })
