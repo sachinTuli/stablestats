@@ -1,5 +1,5 @@
 import axios from 'axios';
-const LOGIN_BASE_URL="http://localhost:3001/auth/";
+const LOGIN_BASE_URL="/auth/";
 
 class LoginService
 {
