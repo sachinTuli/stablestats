@@ -6,7 +6,7 @@ const Race = new Schema({
         require:true,
     },
     distance: {
-        type: String,
+        type: Number,
         require: true
     },
     startTime: {
