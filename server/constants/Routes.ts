@@ -16,7 +16,10 @@ export const DASHBOARD_ROUTE = {
 };
 
 export const PAYMENT_ROUTE = {
-    BASE: "/payment"
+    BASE: "/payment",
+    ADD_NEW_CUSTOMER: "/newCustomer",
+    ADD_NEW_CARD: "/addNewCard",
+    PAYMENT: "/pay"
 }
 
 export const SUBSCRIPTION_ROUTE = {

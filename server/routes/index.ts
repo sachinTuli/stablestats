@@ -13,6 +13,6 @@ router.use(AUTH_ROUTE.BASE, authRouter);
 router.use(USER_ROUTE.BASE, authMiddleware.auth, userRouter)
 router.use(DASHBOARD_ROUTE.BASE, authMiddleware.auth, dashboardRouter);
 router.use(SUBSCRIPTION_ROUTE.BASE, subscriptionRouter);
-router.use(PAYMENT_ROUTE.BASE, authMiddleware.auth, paymentRouter);
+router.use(PAYMENT_ROUTE.BASE, paymentRouter);
 
 export default router;                                                                              
