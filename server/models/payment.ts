@@ -1,7 +1,8 @@
 import mongoose, { Schema } from "mongoose";
+import { PAYMENT_STATUS } from "../constants/Payment";
 import { PLANTYPE } from "../constants/PlanType";
 
-const User = new Schema({
+const Payment = new Schema({
   name: {
     type: String,
     require: true,
@@ -10,31 +11,21 @@ const User = new Schema({
     type: String,
     require: true,
   },
-  password: {
-    type: String,
-    require: true,
-  },
-  phoneNumber: {
+  amount: {
     type: Number,
     require: true,
-  },
-  discordId: {
-    type: String,
-  },
-  token: {
-    type: String,
-  },
-  loginCount: {
-    type: Number,
   },
   planType: {
     type: PLANTYPE,
   },
-  expiryDate: {
-    type: Date,
+  sttaus: {
+      type: PAYMENT_STATUS
   },
+  stripeData: {
+      type: String
+  }
 });
 
-const UserModel = mongoose.model("user", User);
+const UserModel = mongoose.model("user", Payment);
 
 export default UserModel;
