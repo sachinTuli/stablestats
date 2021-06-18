@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import paymentRouter from './payment';
 import subscriptionRouter from './subscription';
-import { AUTH_ROUTE, USER_ROUTE, DASHBOARD_ROUTE } from '../constants/Routes';
+import { AUTH_ROUTE, USER_ROUTE, DASHBOARD_ROUTE, SUBSCRIPTION_ROUTE, PAYMENT_ROUTE } from '../constants/Routes';
 import authMiddleware from '../middleware/auth.middleware';
 import authRouter from './auth';
 import dashboardRouter from './dashboard';
