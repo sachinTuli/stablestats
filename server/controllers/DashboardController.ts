@@ -1,7 +1,8 @@
+import { BaseController } from './BaseController';
+import { HTTP_STATUS } from './../constants/ErrorStatus';
 import express from 'express';
 import DashboardService from '../services/DashboardService';
-// import authService from '../services/AuthService';
-
+import { Message } from '../constants/Message';
 class DashboardController {
 
     constructor() {

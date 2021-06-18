@@ -13,13 +13,14 @@ class DashboardService {
             if (className) {
               objFilter.class = className;
             }
-            if (distance) {
-              objFilter.distance = distance;
+            // if (distance) {
+            //   objFilter.distance = distance;
+            // }
+             console.log("FILTER OBJECT IS",objFilter)
+            if(distance && distance.length>0){
+              objFilter.distance={$gte:distance[0],$lte:distance[1]}
             }
-            if(maxDistance){
-              objFilter.distance={$gte:distance,$lte:maxDistance}
-            }
-            console.log("FILTER OBJECT IS",objFilter)
+           
 
             let raceList;
             raceList = await RaceModel.find(objFilter).lean();

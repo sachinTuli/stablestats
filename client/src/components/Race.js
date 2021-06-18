@@ -10,6 +10,7 @@ return(
                     <td>
                       <p className="fw3">{props.race.distance} M</p>
                       <span className="cgray">{props.race.title}</span>
+                      {/* <span className="cgray">{props.race.class}</span> */}
                     </td>
                     <td>
                       <p className="cblue">Entre fee would be {props.race.entryFees}</p>
