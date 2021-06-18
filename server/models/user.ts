@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { PLANTYPE } from "../constants/PlanType";
 
 const User = new Schema({
     name: {
@@ -20,11 +21,20 @@ const User = new Schema({
     discordId : {
         type:String
     },
-    token: [{
-        token: {
-            type:String
-        }
-    }]
+    token: {
+        type:String
+    },
+    loginCount: {
+        type:Number
+    },
+    planType: {
+        type:PLANTYPE
+    },
+    expiryDate:{
+        type:Date
+    }
+        
+    
 });
 
 const UserModel = mongoose.model('user', User);

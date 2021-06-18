@@ -11,6 +11,7 @@ import router from './routes';
 require('dotenv').config();
 
 const app = express();
+const path = require('path')
 const APP_PORT = process.env.APP_PORT;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 

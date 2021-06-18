@@ -8,3 +8,8 @@ export const   USER_ROUTE = {
     BASE: "/user",
     CURRUNT_USER: "/curruntUser"
 }
+
+
+export const   DASHBOARD_ROUTE = {
+    BASE: "/dashboard"
+    }

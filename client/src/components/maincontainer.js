@@ -6,6 +6,9 @@
  import DashboardService from "../services/DashboardService";
  import LoginService from "../services/LoginService";
 
+ import Horse from '../components/Horse';
+
+ import Race from '../components/Race';
  async function check() {
   return LoginService.getCurruntUser()
     .then((result) => {
@@ -17,11 +20,6 @@
     });
 }
 
-function Maincontainer (){
-
- import Horse from '../components/Horse';
-
- import Race from '../components/Race';
 
 function Maincontainer (props){
 
@@ -193,7 +191,7 @@ useEffect(() => {
               <div className="classCont">
                   {
                     classes.map(shownClass =>
-                        <div className="classOuter"><span style={{ color: className == shownClass.value ? 'red': 'white'}} onClick={(e) =>{  setClassName(shownClass.value); setClassDistChanged(true)}} className="classBox">{shownClass.label}</span></div>
+                        <div key ={shownClass.value} className="classOuter"><span style={{ color: className == shownClass.value ? 'red': 'white'}} onClick={(e) =>{  setClassName(shownClass.value); setClassDistChanged(true)}} className="classBox">{shownClass.label}</span></div>
                       )
                   }
                 
@@ -202,7 +200,7 @@ useEffect(() => {
               <div className="distAvfSlider">
                   {
                     distancesArray.map(distanceShown => 
-                      <span style={{ color: distance == distanceShown? 'red': 'white'}} onClick={(e) => { setDistance(distanceShown) ;setClassDistChanged(true)}} className="classBox">{distanceShown}</span>
+                      <span key ={distanceShown} style={{ color: distance == distanceShown? 'red': 'white'}} onClick={(e) => { setDistance(distanceShown) ;setClassDistChanged(true)}} className="classBox">{distanceShown}</span>
 
                     )
                   }             
