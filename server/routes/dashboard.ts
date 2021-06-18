@@ -1,10 +1,10 @@
 import { Router } from "express";
-import authMiddleware from "../middleware/auth.middleware";
 import DashboardController from '../controllers/DashboardController';
+import { DASHBOARD_ROUTE } from "../constants/Routes";
 
 const dashboardRouter = Router();
 
-dashboardRouter.post("/getRaces", DashboardController.getRaces);
-dashboardRouter.post("/getHorses", authMiddleware.auth, DashboardController.getHorses);
+dashboardRouter.post(DASHBOARD_ROUTE.GET_RACE, DashboardController.getRaces);
+dashboardRouter.post(DASHBOARD_ROUTE.GET_HOURSE, DashboardController.getHorses);
 
 export default dashboardRouter; 

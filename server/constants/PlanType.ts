@@ -1,5 +1,5 @@
-export const PLANTYPE = {
-    FREE: "FREE",
-    TRIAL: "TRIAL",
-    PRO:"PRO"
+export enum PLANTYPE {
+    FREE = "FREE",
+    TRIAL = "TRIAL",
+    PRO = "PRO"
 }
