@@ -4,6 +4,20 @@
  import item_sample from '../img/item_sample.png'
  import React, { useState,useEffect } from "react";
  import DashboardService from "../services/DashboardService";
+ import LoginService from "../services/LoginService";
+
+ async function check() {
+  return LoginService.getCurruntUser()
+    .then((result) => {
+      console.log(result);
+      return result.data;
+    })
+    .catch((err) => {
+      alert("Something went wrong");
+    });
+}
+
+function Maincontainer (){
 
  import Horse from '../components/Horse';
 

@@ -18,4 +18,14 @@ module.exports = function (passport:any) {
             }
         });
     }));  
+
+    passport.serializeUser(function(user, done) {
+        done(null, user.email)
+    })
+
+    passport.deserializeUser(function(email, done) {
+        UserModel.findOne({email: email}, function(err, user) {
+            done(err, user);
+        })
+    })
 }

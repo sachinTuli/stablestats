@@ -1,13 +1,13 @@
 import express from 'express';
-import * as jwt from 'jwt-simple';
-
+import { ERROR_MESSAGE } from '../constants/ErrorMessage';
+import { HTTP_STATUS } from '../constants/ErrorStatus';
 class AuthMiddleware {
     async auth(req:express.Request, res:express.Response, next:any) {
-        let b_token = req.header('Authorization');
-        const token = (b_token as string).split(" ")[1];
-        let payload = jwt.decode(token, process.env.JWT_SECRET as string);
-        req.user = payload;
-        next();
+       if(req.isAuthenticated()) {
+           next();
+       } else {
+            res.status(HTTP_STATUS.NOT_AUTHORIZED).send({ success: false, message: ERROR_MESSAGE.NOT_AUTHENTICATED });
+       }
     }
 }
 

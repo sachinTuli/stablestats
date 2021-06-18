@@ -11,15 +11,18 @@ import router from './routes';
 require('dotenv').config();
 
 const app = express();
-
-const path = require('path');
 const APP_PORT = process.env.APP_PORT;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 
 app.use(session({
     secret: "sessionSecret",
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false,
+    name: "s_id",
+    cookie:{
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        secure: false
+    }
 }));
 
 app.use(cors());
@@ -42,6 +45,7 @@ mongoose.connect(MONGO_URL, {
 });
 
 app.use(router);
+
 app.use(express.static('client/build'))
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))

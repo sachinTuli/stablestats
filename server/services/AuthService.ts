@@ -1,86 +1,62 @@
 import express from 'express'
 import UserModel from '../models/user';
 import bcrypt from 'bcryptjs';
-import * as jwt from "jwt-simple";
-import { Error } from 'mongoose';
 import { User } from '../interface/user.interface';
-
-class AuthService {
+import UserExistException from '../exceptions/UserExistException';
+import UserNotFoundException from '../exceptions/UserNotFoundException';
+import IncorrectPasswordException from '../exceptions/IncorrectPasswordException';
+class AuthService  {
 
     /**
      * 
-     * @param req 
-     * @returns 
+     * @param req Request
+     * @returns Promise<boolean>
      */
-    public async register(req:express.Request) : Promise<any> {
+    public async register(req:express.Request) : Promise<boolean> {
         const { name, email, password, phoneNumber } = req.body;
-        try {
-            const user = await UserModel.findOne({email:email});
-            if(user) {
-                return {
-                    success:false,
-                    message:"User already exist. Please login."
-                };
-            } else {
-                var hasPassword = await bcrypt.hash(password, 12);
-                const newUser = new UserModel({
-                    name:name,
-                    email: email,
-                    password: hasPassword,
-                    phoneNumber: phoneNumber,
-                })
-                await newUser.save();
-                return {
-                    success:true,
-                    message:"User Register."
-                }
+        let user:any;
+        user = await UserModel.findOne({email:email});
+        if(user) {
+            throw new UserExistException(user.email);
+        } else {
+            let hasPassword:string;
+            hasPassword = await bcrypt.hash(password, 12);
+            const newUser = new UserModel({
+                name:name,
+                email: email,
+                password: hasPassword,
+                phoneNumber: phoneNumber,
+            })
+            await newUser.save();            
+            return true;
 
-            }
-        } catch (error) {
-            throw new Error("Internal Server Error");   
-        }
+        } 
     }
 
     /**
      * 
-     * @param req 
-     * @returns user with token
+     * @param req Request
+     * @returns  Promise<User>
      */
-    public async login(req:express.Request) : Promise<any> {
+    public async login(req:express.Request) : Promise<User> {
         const { username, password } = req.body;
-        try {
-            const user:User = await UserModel.findOne({email:username});
-            if(!user) {
-                return {
-                    success: false,
-                    message: "User doesn't exists."
-                }
+        let user:User;
+        user = await UserModel.findOne({email:username});
+        if(!user) {
+           throw new UserNotFoundException();
+        } else {
+            let matchedPassword = await bcrypt.compare(password, user.password);
+            if(!matchedPassword) {
+                throw new IncorrectPasswordException()
             } else {
-                let matchedPassword = await bcrypt.compare(password, user.password)
-                if(!matchedPassword) {
-                    return {
-                        success: false,
-                        message: "Incorrect password."
-                    }
-                } else {
-
-                    const token = jwt.encode({
-                            name: user.name,
-                            email: user.email,
-                            phoneNumber: user.phoneNumber
-                    }, process.env.JWT_SECRET as string);
-                    user.token.push({token: token});
-                    
-                     return {
-                        success: true,
-                        message: "Login Successfull.",
-                        data:user
-                    }
-                }
+                req.login(user, function(err) {
+                    console.log(err);
+                })
+                console.log(user);
+                return user;
             }
-        } catch(err) {
-            throw new Error("Internal Server Error");
         }
+         
     }
 }
 
