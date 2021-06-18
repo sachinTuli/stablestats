@@ -4,7 +4,7 @@ import DashboardController from '../controllers/DashboardController';
 
 const dashboardRouter = Router();
 
-dashboardRouter.post("/getRaces", authMiddleware.auth, DashboardController.getRaces);
+dashboardRouter.post("/getRaces", DashboardController.getRaces);
 dashboardRouter.post("/getHorses", authMiddleware.auth, DashboardController.getHorses);
 
-export default dashboardRouter;
+export default dashboardRouter; 
