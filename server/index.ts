@@ -13,7 +13,7 @@ require('dotenv').config();
 const app = express();
 
 const path = require('path');
-const APP_PORT = process.env.PORT;
+const APP_PORT = process.env.APP_PORT;
 const MONGO_URL = process.env.MONGOOSE_URL as string;
 
 app.use(session({
@@ -60,7 +60,7 @@ app.all('/*', function(req, res, next) {
     next();
 });
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(APP_PORT || 5000, () => {
     console.log('Hello baby welcome to my world!');
-    console.log("app port",process.env.PORT);
+    console.log("app port",APP_PORT);
 })

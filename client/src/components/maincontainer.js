@@ -55,6 +55,12 @@ const [selectedRace,setSelectedRace] = useState("")
 const [classDistChanged,setClassDistChanged]=useState(true)
 
 
+function resetData(){
+        setRaces([])
+        setSelectedRace("")
+        setHorses([]);
+}
+
 function filterOutHorses(givenHorses){
   // console.log(givenHorses);
   if(givenHorses && givenHorses.length>0){
@@ -130,8 +136,8 @@ function  searchHorse(forceCall){
       
     DashboardService.getRaces(data)
     .then((result) => {
-      setClassDistChanged(false)
-          setWinPercentage("")
+    setClassDistChanged(false)
+    setWinPercentage("")
     setWinPercentageDistance("")
     setOdds("")
     setOddsDistance("")
@@ -144,9 +150,7 @@ function  searchHorse(forceCall){
         setHorses(output[0].horses);
         }
         else{
-        setRaces([])
-        setSelectedRace("")
-        setHorses([]);
+          resetData();
         }
       }
     })

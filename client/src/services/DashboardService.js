@@ -1,5 +1,7 @@
 import axios from 'axios';
-const DASHBOARD_BASE_URL="/dashboard/";
+
+// const DASHBOARD_BASE_URL="/dashboard/";
+const DASHBOARD_BASE_URL="http://localhost:3001/dashboard/";
 
 const DASHBOARD_HORSE_URL="https://api.zed.run/api/v1/horses/get/";
 
