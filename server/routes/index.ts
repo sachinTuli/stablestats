@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { AUTH_ROUTE, USER_ROUTE,DASHBOARD_ROUTE, PAYMENT_ROUTE, SUBSCRIPTION_ROUTE } from '../constants/Routes';
+import paymentRouter from './payment';
+import subscriptionRouter from './subscription';
+import { AUTH_ROUTE, USER_ROUTE, DASHBOARD_ROUTE } from '../constants/Routes';
 import authMiddleware from '../middleware/auth.middleware';
 import authRouter from './auth';
 import dashboardRouter from './dashboard';
-import paymentRouter from './payment';
-import subscriptionRouter from './subscription';
 import userRouter from './user';
 
 const router = Router();

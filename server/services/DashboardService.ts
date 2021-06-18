@@ -1,9 +1,17 @@
 import express from 'express'
 import RaceModel from '../models/races';
 import { Error } from 'mongoose';
-
+import { HTTP_STATUS } from '../constants/ErrorStatus';
+import { ERROR_MESSAGE } from '../constants/ErrorMessage';
+import HttpException from '../exceptions/HttpException';
 
 class DashboardService {
+
+  /**
+   * 
+   * @param req 
+   * @returns 
+   */
 
     public async getRaces(req:express.Request) : Promise<any> {
 
