@@ -2,8 +2,13 @@ import express from 'express'
 import RaceModel from '../models/races';
 import { Error } from 'mongoose';
 
-
 class DashboardService {
+
+  /**
+   * 
+   * @param req 
+   * @returns 
+   */
 
     public async getRaces(req:express.Request) : Promise<any> {
 
@@ -23,11 +28,7 @@ class DashboardService {
 
             let raceList;
             raceList = await RaceModel.find(objFilter).lean();
-             return {
-                    success:true,
-                    message: "Race List",
-                    data: raceList
-                };
+            return raceList;
         } catch (error) {
             throw new Error("Internal Server Error");   
         }

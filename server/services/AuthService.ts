@@ -5,16 +5,17 @@ import { User } from '../interface/user.interface';
 import UserExistException from '../exceptions/UserExistException';
 import UserNotFoundException from '../exceptions/UserNotFoundException';
 import IncorrectPasswordException from '../exceptions/IncorrectPasswordException';
+import moment from 'moment';
 class AuthService  {
 
     /**
      * 
      * @param req Request
-     * @returns Promise<boolean>
+     * @returns Promise<User>
      */
-    public async register(req:express.Request) : Promise<boolean> {
+    public async register(req:express.Request) : Promise<User> {
         const { name, email, password, phoneNumber } = req.body;
-        let user:any;
+        let user: User; 
         user = await UserModel.findOne({email:email});
         if(user) {
             throw new UserExistException(user.email);
@@ -26,9 +27,15 @@ class AuthService  {
                 email: email,
                 password: hasPassword,
                 phoneNumber: phoneNumber,
+                loginCount: 1,
             })
-            await newUser.save();            
-            return true;
+            let savedUser: User = await newUser.save();            
+            req.login(user, function (err) {
+                console.log(err);
+            });
+            savedUser.dashboardShow = false;
+            console.log(savedUser);
+            return savedUser;
 
         } 
     }
@@ -40,7 +47,7 @@ class AuthService  {
      */
     public async login(req:express.Request) : Promise<User> {
         const { username, password } = req.body;
-        let user:User;
+        let user: User;
         user = await UserModel.findOne({email:username});
         if(!user) {
            throw new UserNotFoundException();
@@ -51,8 +58,15 @@ class AuthService  {
             } else {
                 req.login(user, function(err) {
                     console.log(err);
-                })
-                console.log(user);
+                })                
+                let loginCount = user.loginCount = Number(user.loginCount) + 1;
+                await UserModel.updateOne({ _id: user._id }, { loginCount: loginCount });
+                const now = moment().valueOf();
+                if (user.expiryDate && user.expiryDate !== null && user.expiryDate > now) {
+                    user.dashboardShow = true;
+                } else {
+                    user.dashboardShow = false;
+                }
                 return user;
             }
         }

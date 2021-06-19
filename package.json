@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/sachinTuli/stablestats#readme",
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.15.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.10",
@@ -36,10 +38,14 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
     "jwt-simple": "^0.5.6",
+    "moment": "^2.29.1",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
@@ -47,6 +53,19 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "stripe": "^8.155.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.8",
+    "@types/express-session": "^1.17.0",
+    "@types/mongoose": "^5.7.36",
+    "@types/passport": "^1.0.4",
+    "@types/passport-local": "^1.0.33",
+    "nodemon": "^2.0.5",
+    "@types/express": "^4.17.12",
+    "@types/node": "^15.12.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   }
