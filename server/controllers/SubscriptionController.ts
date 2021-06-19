@@ -1,10 +1,8 @@
 import { HTTP_STATUS } from './../constants/ErrorStatus';
 import { BaseController } from "./BaseController";
 import express from 'express';
-import fs from 'fs';
-import path from 'path';
 import { Message } from '../constants/Message';
-import { Package } from '../interface/Package';
+import SubscriptionService from '../services/SubscriptionService';
 
 class SubscriptionController extends BaseController {
     
@@ -20,8 +18,7 @@ class SubscriptionController extends BaseController {
      */
     public async packages(req: express.Request, res: express.Response) {
         try {
-            const json_path =  path.join(__dirname, '../json', 'packages.json');
-            const packages:Package = JSON.parse(fs.readFileSync(json_path).toString());
+            let packages = SubscriptionService.getPackages(req);
             return res.status(HTTP_STATUS.SUCCESS).send(super.mapApiResponse(true, Message.ALL_RECORDS_FETCHED, packages));
         } catch(err) {
             return res.status(HTTP_STATUS.SUCCESS).send(super.mapErrorResponse(err));

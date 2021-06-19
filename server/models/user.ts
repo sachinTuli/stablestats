@@ -26,12 +26,13 @@ const User = new Schema({
   },
   loginCount: {
     type: Number,
+    default: 0
   },
   planType: {
     type: PLANTYPE,
   },
   expiryDate: {
-    type: Date,
+    type: Number,
   },
 });
 

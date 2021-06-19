@@ -10,7 +10,7 @@ export const USER_ROUTE = {
 };
 
 export const DASHBOARD_ROUTE = {
-  BASE: "/dashboard",
+  BASE: "/dash",
   GET_RACE: "/getRaces",
   GET_HOURSE: "/getHorses"
 };

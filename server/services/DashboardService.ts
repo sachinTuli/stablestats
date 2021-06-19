@@ -1,9 +1,6 @@
 import express from 'express'
 import RaceModel from '../models/races';
 import { Error } from 'mongoose';
-import { HTTP_STATUS } from '../constants/ErrorStatus';
-import { ERROR_MESSAGE } from '../constants/ErrorMessage';
-import HttpException from '../exceptions/HttpException';
 
 class DashboardService {
 
@@ -31,11 +28,7 @@ class DashboardService {
 
             let raceList;
             raceList = await RaceModel.find(objFilter).lean();
-             return {
-                    success:true,
-                    message: "Race List",
-                    data: raceList
-                };
+            return raceList;
         } catch (error) {
             throw new Error("Internal Server Error");   
         }

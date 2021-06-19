@@ -2,25 +2,28 @@
     {
         "planType": "FREE",
         "amount": 0,
-        "expirationTime": 86400000,
         "title": "Free",
         "description": "dummy",
-        "image": "string"
+        "image": "string",
+        "expirationTime": 1,
+        "expirationType": "day"
     },
     {
         "planType": "TRIAL",
         "amount": 450,
-        "expirationTime": 12096000000000,
         "title": "Trail", 
         "description": "14 Days",
-        "image": "string"
+        "image": "string",
+        "expirationTime": 14,
+        "expirationType": "days"
     },
     {
         "planType": "PRO",
         "amount": 4500,
-        "expirationTime": 315360000000000,
         "title": "Pro",
         "description": "365 DAYS",
-        "image": "string"
+        "image": "string",
+        "expirationTime": 1,
+        "expirationType": "year"
     }
 ]

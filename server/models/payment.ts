@@ -18,7 +18,7 @@ const Payment = new Schema({
   planType: {
     type: PLANTYPE,
   },
-  sttaus: {
+  status: {
       type: PAYMENT_STATUS
   },
   stripeData: {
@@ -26,6 +26,6 @@ const Payment = new Schema({
   }
 });
 
-const UserModel = mongoose.model("user", Payment);
+const PaymentModel = mongoose.model("payment", Payment);
 
-export default UserModel;
+export default PaymentModel;
